@@ -16,7 +16,7 @@
             .then(response => response.text())
             .then(text => {
                 const parser = new DOMParser();
-                const htmlDoc = parser.parseFromString(text, '//');
+                const htmlDoc = parser.parseFromString(text, '/cj');
                 const links = htmlDoc.querySelectorAll('a');
                 const fileButtonsDiv = document.getElementById('fileButtons');
 
