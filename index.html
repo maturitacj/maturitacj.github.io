@@ -3,35 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Click</title>
+    <title>maturitkaa</title>
     <style>
         body {
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            background-image: url('background.jpg'); /* Replace 'background.jpg' with your image file */
-            background-size: cover;
-            background-position: center;
-            font-family: Arial, sans-serif;
+            height: 100vh;
+            background-color: #f2f2f2;
         }
-        #clickButton {
-            padding: 40px 80px; /* Adjust padding to make button bigger */
-            font-size: 3em;
-            cursor: pointer;
-            background-color: rgba(255,255,255,0.5);
+        .container {
+            text-align: center;
+        }
+        input[type="number"] {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+        button {
+            padding: 10px 20px;
             border: none;
-            border-radius: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-        #clickButton:hover {
-            background-color: rgba(255,255,255,0.8);
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-<button id="clickButton" onclick="window.location.href='https://github.com/maturitacj/maturitacj.github.io'">Click</button>
+
+<div class="container">
+    <h2>maturitkaa</h2>
+    <input type="number" id="password" placeholder="pin">
+    <button onclick="checkPassword()">odeslat</button>
+</div>
+
+<script>
+    function checkPassword() {
+        var password = document.getElementById("password").value;
+        // Replace "999025880" with your actual password
+        if (password === "999025880") {
+            window.location.href = "https://github.com/maturitacj/maturitacj.github.io/tree/main/MATURITA"; // Redirect to your desired page
+        } else {
+            alert("spatne kamarade.");
+        }
+    }
+</script>
+
 </body>
 </html>
