@@ -12,11 +12,52 @@
 <script>
     // Function to fetch the contents of the folder
     function listFolderContents() {
-        fetch('folder_path') // Replace 'folder_path' with the path to your folder
+        fetch('cj/') // Folder path is specified here
             .then(response => response.text())
             .then(text => {
                 const parser = new DOMParser();
-                const htmlDoc = parser.parseFromString(text, '/cj');
+                const htmlDoc = parser.parseFromString(text, 'text/html');
+                const links = htmlDoc.querySelectorAll('a');
+                const fileButtonsDiv = document.getElementById('fileButtons');
+
+                links.forEach(link => {
+                    const fileName = link.textContent;
+                    const fileURL = link.href;
+                    const button = document.createElement('button');
+                    button.textContent = fileName;
+                    button.onclick = function() {
+                        window.location.href = fileURL;
+                    };
+                    fileButtonsDiv.appendChild(button);
+                });
+            })
+            .catch(error => console.error('Error fetching folder contents:', error));
+    }
+
+    // Call the function when the page loads
+    window.onload = listFolderContents;
+</script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Folder Contents</title>
+</head>
+<body>
+<h1>Contents of the Folder</h1>
+<div id="fileButtons"></div>
+
+<script>
+    // Function to fetch the contents of the folder
+    function listFolderContents() {
+        fetch('cj/') // Folder path is specified here
+            .then(response => response.text())
+            .then(text => {
+                const parser = new DOMParser();
+                const htmlDoc = parser.parseFromString(text, 'text/html');
                 const links = htmlDoc.querySelectorAll('a');
                 const fileButtonsDiv = document.getElementById('fileButtons');
 
