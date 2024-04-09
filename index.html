@@ -3,80 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Folder Contents</title>
+    <title>PDF Viewer</title>
 </head>
 <body>
-<h1>Contents of the Folder</h1>
-<div id="fileButtons"></div>
+<h1>List of PDF Files</h1>
+<ul>
+    <!-- Replace 'cj/' with the relative path to your 'cj' folder -->
+    <!-- You may need to adjust this depending on the actual folder structure -->
+    <!-- Make sure the 'cj' folder is accessible from the location of this HTML file -->
+    <?php
+        // Get a list of PDF files in the 'cj' folder
+        $pdfFiles = glob('cj/*.pdf');
 
-<script>
-    // Function to fetch the contents of the folder
-    function listFolderContents() {
-        fetch('cj/') // Folder path is specified here
-            .then(response => response.text())
-            .then(text => {
-                const parser = new DOMParser();
-                const htmlDoc = parser.parseFromString(text, 'text/html');
-                const links = htmlDoc.querySelectorAll('a');
-                const fileButtonsDiv = document.getElementById('fileButtons');
-
-                links.forEach(link => {
-                    const fileName = link.textContent;
-                    const fileURL = link.href;
-                    const button = document.createElement('button');
-                    button.textContent = fileName;
-                    button.onclick = function() {
-                        window.location.href = fileURL;
-                    };
-                    fileButtonsDiv.appendChild(button);
-                });
-            })
-            .catch(error => console.error('Error fetching folder contents:', error));
+        // Loop through each PDF file and create a list item with a link to the file
+        foreach ($pdfFiles as $pdfFile) {
+            $fileName = basename($pdfFile);
+            echo "<li><a href='$pdfFile'>$fileName</a></li>";
     }
-
-    // Call the function when the page loads
-    window.onload = listFolderContents;
-</script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Folder Contents</title>
-</head>
-<body>
-<h1>Contents of the Folder</h1>
-<div id="fileButtons"></div>
-
-<script>
-    // Function to fetch the contents of the folder
-    function listFolderContents() {
-        fetch('cj/') // Folder path is specified here
-            .then(response => response.text())
-            .then(text => {
-                const parser = new DOMParser();
-                const htmlDoc = parser.parseFromString(text, 'text/html');
-                const links = htmlDoc.querySelectorAll('a');
-                const fileButtonsDiv = document.getElementById('fileButtons');
-
-                links.forEach(link => {
-                    const fileName = link.textContent;
-                    const fileURL = link.href;
-                    const button = document.createElement('button');
-                    button.textContent = fileName;
-                    button.onclick = function() {
-                        window.location.href = fileURL;
-                    };
-                    fileButtonsDiv.appendChild(button);
-                });
-            })
-            .catch(error => console.error('Error fetching folder contents:', error));
-    }
-
-    // Call the function when the page loads
-    window.onload = listFolderContents;
-</script>
+    ?>
+</ul>
 </body>
 </html>
